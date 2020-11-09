@@ -1,0 +1,8 @@
+@import '~@angular/material/theming';
+
+$my-theme-primary: mat-palette($mat-gray, 800, 300, 900);
+$my-theme-accent: mat-palette($mat-indigo, 600, 300, 900);
+$my-theme-warn: mat-palette($mat-deep-orange, A200);
+
+// create theme (use mat-dark-theme for themes with dark backgrounds)
+$my-theme: mat-light-theme($my-theme-primary, $my-theme-accent, $my-theme-warn);

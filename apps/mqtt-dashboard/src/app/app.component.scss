@@ -1,0 +1,62 @@
+@import './shared/styles/variables';
+
+.card-wrapper {
+    display: flex;
+    padding: $card-spacing;
+}
+
+.card-wrapper {
+    .mat-card {
+        min-width: 300px;
+        width: 100%;
+    }
+}
+
+.card-chart-wrapper {
+    display: flex;
+    padding: $card-spacing;
+
+    .mat-card {
+        width: 100%;
+    }
+}
+
+.mat-card ~ .mat-card {
+    margin-left: $card-spacing;
+}
+
+.data-entry {
+    display: block;
+}
+
+.data-entry ~ .data-entry {
+    margin-top: 10px;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.mat-card {
+    .mat-list-item {
+        .mat-hint {
+            display: block;
+            font-size: 0.7rem;
+        }
+
+        .mat-h2 {
+            display: block;
+        }
+    }
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    padding: $card-spacing;
+    font-size: $font-small;
+
+    .footer-text {
+        display: block;
+    }
+}

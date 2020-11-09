@@ -1,0 +1,50 @@
+@import '~@angular/material/theming';
+@include mat-core();
+@import './app/shared/styles/theme';
+@import './app/shared/styles/variables';
+
+.my-theme {
+    @include angular-material-theme($my-theme);
+}
+
+html,
+body {
+    height: 100%;
+    background-color: mat-color($my-theme-primary, lighter);
+}
+body {
+    margin: 0;
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+// defaults
+.mqtt-list-item .mat-list-item-content {
+    align-items: unset;
+    justify-content: space-between;
+}
+
+.mat-icon.mat-success,
+.mat-success {
+    color: $success;
+    fill: $success;
+}
+
+.error-card {
+    .mat-spinner {
+        display: inline;
+    }
+
+    .error-message {
+        margin-left: 25px;
+    }
+}
+
+.loading-spinner {
+    width: 100%;
+    margin: 50px auto;
+    padding-bottom: 50px;
+
+    .mat-spinner {
+        margin: 0 auto;
+    }
+}
