@@ -9,6 +9,10 @@ import { WsResponse } from '@nestjs/websockets';
 import { RedisService } from 'nestjs-redis';
 import { ConfigService } from '@nestjs/config';
 
+const MAX_ITEMS_STORED = 600;
+const MQTT_CONNECTIVITY_INTERVAL = 10000;
+const MQTT_STORE_INFO_INTERVAL = 30000;
+
 @Injectable()
 export class AppService {
     private client: MqttClient;
@@ -39,11 +43,11 @@ export class AppService {
             };
         });
 
-        interval(10000).subscribe(_ => {
+        interval(MQTT_CONNECTIVITY_INTERVAL).subscribe(_ => {
             this.mqtt_connected.next(this.client.connected);
         });
 
-        interval(30000).subscribe(_ => {
+        interval(MQTT_STORE_INFO_INTERVAL).subscribe(_ => {
             this.writeDataToRedis('broker', this.brokerInfo);
             this.readRedisData('broker');
         });
@@ -59,11 +63,11 @@ export class AppService {
 
     private async writeDataToRedis(key: string, data: any) {
         await this.redis.lpush(key, JSON.stringify(data));
-        await this.redis.ltrim(key, 0, 300);
+        await this.redis.ltrim(key, 0, MAX_ITEMS_STORED);
     }
 
     private async readRedisData(key: string) {
-        let data = await this.redis.lrange(key, 0, 300);
+        let data = await this.redis.lrange(key, 0, MAX_ITEMS_STORED);
         data = data.reverse();
         this.mqtt_SYS.next(data.map(i => JSON.parse(i)));
     }

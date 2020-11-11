@@ -11,7 +11,7 @@
             >device_hub</mat-icon
         >
     </button>
-    <a mat-icon-button href="https://github.com/secanis/mqtt-dashboard">
+    <a mat-icon-button href="https://github.com/secanis/mqtt-dashboard" target="_blank">
         <svg viewBox="0 -30 200 200">
             <g fill="#eee">
                 <path
@@ -127,14 +127,20 @@
 
 <footer class="footer">
     <div>
-        <span class="footer-text">brought to you by <a href="https://secanis.ch">secanis.ch</a> - software made in switzerland</span>
+        <span class="footer-text"
+            >brought to you by <a href="https://secanis.ch">secanis.ch</a> - software made in switzerland</span
+        >
         <span class="footer-text"
             >if you have ideas or problems, please do not hesitate and create an issue on
             <a href="https://github.com/secanis/mqtt-dashboard/issues">github</a> or create a PR.</span
         >
     </div>
     <div>
-        <span class="footer-text version">{{hash$ | async}}</span>
+        <span class="footer-text version" *ngIf="hash$ | async as hash">
+            <a href="https://github.com/secanis/mqtt-dashboard/commit/{{ hash }}">
+                {{ hash }}
+            </a>
+        </span>
     </div>
 </footer>
 

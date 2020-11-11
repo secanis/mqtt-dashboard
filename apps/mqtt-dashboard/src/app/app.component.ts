@@ -46,6 +46,7 @@ export class AppComponent {
 }
 
 function calcUptime(secondsString: string): string {
-    const seconds: number = parseInt(secondsString.replace('seconds', '').trim(), 10);
+    const time = (secondsString) ? secondsString.replace('seconds', '').trim() : '';
+    const seconds: number = parseInt(time, 10);
     return moment.duration(seconds, 's').humanize();
 }
