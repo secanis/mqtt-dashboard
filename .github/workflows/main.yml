@@ -22,11 +22,12 @@ jobs:
           docker buildx build --push \
           --tag secanis/mqtt-dashboard:latest \
           --platform linux/amd64,linux/arm/v7,linux/arm64 .
-      - name: Docker Hub Description
-        uses: peter-evans/dockerhub-description@v2.4.1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: secanis/mqtt-dashboard
-          short-description: This Mqtt project should help to visualize the actual traffic and other data on a Mqtt Broker.
-          readme-filepath: ./README.md
+# currently this not works because of not usable access token for docker hub api           
+#       - name: Docker Hub Description
+#         uses: peter-evans/dockerhub-description@v2.4.1
+#         with:
+#           username: ${{ secrets.DOCKER_USERNAME }}
+#           password: ${{ secrets.DOCKER_PASSWORD }}
+#           repository: secanis/mqtt-dashboard
+#           short-description: This Mqtt project should help to visualize the actual traffic and other data on a Mqtt Broker.
+#           readme-filepath: ./README.md
