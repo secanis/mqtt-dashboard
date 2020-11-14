@@ -3,7 +3,7 @@
 This Mqtt project should help to visualize the actual traffic and other data on a Mqtt Broker.
 Initially was this project thought for Mosquitto as broker and a RaspberryPi as host.
 
-![https://raw.githubusercontent.com/secanis/mqtt-dashboard/main/docs/images/screenshot.png](Screenshot Mqtt-Dashboard)
+![Screenshot Mqtt-Dashboard](https://github.com/secanis/mqtt-dashboard/raw/main/docs/images/screenshot.png "Screenshot Mqtt-Dashboard")
 
 ## How to run it
 
