@@ -3,7 +3,7 @@
 This Mqtt project should help to visualize the actual traffic and other data on a Mqtt Broker.
 Initially was this project thought for Mosquitto as broker and a RaspberryPi as host.
 
-![Screenshot Mqtt-Dashboard](https://github.com/secanis/mqtt-dashboard/raw/main/docs/images/screenshot.png "Screenshot Mqtt-Dashboard")
+![Screenshot Mqtt-Dashboard](https://github.com/secanis/mqtt-dashboard/raw/main/docs/images/screenshot.png 'Screenshot Mqtt-Dashboard')
 
 ## How to run it
 
@@ -23,14 +23,16 @@ docker run --name mqtt-dashboard -p 3333:3333 secanis/mqtt-dashboard
 
 To configure the Mqtt-Dashboard you can set several ENV variables:
 
-| ENV | default | description |
-| ----| ------- | ----------- |
-| REDIS_HOST | localhost | Redis host |
-| REDIS_PORT | 6379 | Redis port |
-| MQTT_HOST | localhost | Mqtt Hostname/Host |
-| MQTT_PORT | 9001 | Mqtt Port |
-| MQTT_USERNAME | - | Mqtt Username |
-| MQTT_PASSWORD | - | Mqtt Password |
+| ENV           | default   | description         |
+| ------------- | --------- | ------------------- |
+| REDIS_HOST    | localhost | Redis host          |
+| REDIS_PORT    | 6379      | Redis port          |
+| MQTT_HOST     | localhost | Mqtt Hostname/Host  |
+| MQTT_PORT     | 9001      | Mqtt Port           |
+| MQTT_USERNAME | -         | Mqtt Username       |
+| MQTT_PASSWORD | -         | Mqtt Password       |
+| MQTT_QOS      | 2         | Mqtt QOS Setting    |
+| MQTT_RETAIN   | false     | Mqtt Retain Setting |
 
 Full Example:
 
@@ -38,18 +40,18 @@ Full Example:
 docker run --name mqtt-dashboard -p 3333:3333 -e MQTT_HOST=192.160.0.110 -e MQTT_USERNAME=mqtt -e MQTT_PASSWORD=admin secanis/mqtt-dashboard
 ```
 
-
 ## Development
 
 This project uses:
-- Backend
-    - NestJS
-- Frontend
-    - Angular
-    - Socket
-    - EChart
-    - MomentJS
-- Redis
+
+-   Backend
+    -   NestJS
+-   Frontend
+    -   Angular
+    -   Socket
+    -   EChart
+    -   MomentJS
+-   Redis
 
 ```bash
 # start a local redis
@@ -67,4 +69,3 @@ npm run start
 It would be very nice, when you give us a feedback or when you create issues if you detect problems or bugs. If you want to fix it yourself or you have an idea for something new, please create a PR, that would help us a lot.
 
 Happy Coding <3 ...
-

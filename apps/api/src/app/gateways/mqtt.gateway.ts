@@ -1,12 +1,8 @@
-import {
-    OnGatewayConnection,
-    OnGatewayDisconnect,
-    WebSocketGateway,
-    WebSocketServer,
-} from '@nestjs/websockets';
+import { OnGatewayConnection, OnGatewayDisconnect, WebSocketGateway, WebSocketServer } from '@nestjs/websockets';
 import { merge } from 'rxjs';
 import { AppService } from '../app.service';
 import { Server, Client } from 'socket.io';
+import { Logger } from '@nestjs/common';
 
 @WebSocketGateway()
 export class MqttGateway implements OnGatewayConnection, OnGatewayDisconnect {
@@ -15,14 +11,14 @@ export class MqttGateway implements OnGatewayConnection, OnGatewayDisconnect {
     constructor(private appService: AppService) {}
 
     async handleConnection(client: Client, ...args: any[]) {
-        console.log('connected', client.id);
+        Logger.log('connected', client.id);
 
-        merge(this.appService.getConnectedState(), this.appService.getSysData()).subscribe((obj) => {
-            this.server.emit(obj.event, obj.data)
+        merge(this.appService.getConnectedState(), this.appService.getSysData()).subscribe(obj => {
+            this.server.emit(obj.event, obj.data);
         });
     }
 
     async handleDisconnect(client: Client) {
-        console.log('disconnected', client.id);
+        Logger.log('disconnected', client.id);
     }
 }

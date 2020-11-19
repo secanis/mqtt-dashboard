@@ -12,6 +12,8 @@ let config = {
         port: process.env.MQTT_PORT || 9001,
         username: process.env.MQTT_USERNAME,
         password: process.env.MQTT_PASSWORD,
+        qos: process.env.MQTT_QOS || 2,
+        retain: process.env.MQTT_RETAIN || false,
     },
 };
 
