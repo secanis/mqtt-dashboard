@@ -1,12 +1,12 @@
-const http = require("http");
+const http = require('http');
 
 const options = {
-    host: "localhost",
-    port: process.env.PORT || 3000,
-    timeout: 2000
+    host: 'localhost',
+    port: process.env.PORT || 3333,
+    timeout: 2000,
 };
 
-let request = http.request(options, (res) => {
+let request = http.request(options, res => {
     console.info(`STATUS: ${res.statusMessage}`);
     if (res.statusCode == 200) {
         process.exit(0);
@@ -15,7 +15,7 @@ let request = http.request(options, (res) => {
     }
 });
 
-request.on('error', (err) => {
+request.on('error', err => {
     console.log('PORT', process.env.PORT);
     console.error(err);
     console.error('ERROR: unexpected error, please check the logs');
