@@ -1,28 +1,35 @@
 name: build docker image
 
 on:
-  push:
-    branches: main
+    push:
+        branches: main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout code
-        uses: actions/checkout@v2
-      - name: install buildx
-        id: buildx
-        uses: crazy-max/ghaction-docker-buildx@v3
-        with:
-          version: latest
-      - name: login to docker hub
-        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-      - name: build the image
-        run: |
-          docker buildx build --push \
-          --tag secanis/mqtt-dashboard:latest \
-          --platform linux/amd64,linux/arm/v7,linux/arm64 .
-# currently this not works because of not usable access token for docker hub api           
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout code
+              uses: actions/checkout@v2
+            - name: install buildx
+              id: buildx
+              uses: crazy-max/ghaction-docker-buildx@v3
+              with:
+                  version: latest
+            - name: login to docker hub
+              run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+            - name: get-npm-version
+              id: package-version
+              uses: martinbeentjes/npm-get-version-action@master
+            - name: build the image
+              run: |
+                  docker buildx build --push \
+                  --tag secanis/mqtt-dashboard:latest --tag secanis/mqtt-dashboard:${{ steps.package-version.outputs.current-version}} \
+                  --platform linux/amd64,linux/arm/v7,linux/arm64 .
+            - uses: Klemensas/action-autotag@stable
+              with:
+                  GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+                  tag_prefix: 'v'
+# currently this not works because of not usable access token for docker hub api
 #       - name: Docker Hub Description
 #         uses: peter-evans/dockerhub-description@v2.4.1
 #         with:

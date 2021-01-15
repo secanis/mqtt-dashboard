@@ -1,232 +1,271 @@
 {
-    "version": 1,
-    "projects": {
-        "mqtt-dashboard": {
-            "projectType": "application",
-            "schematics": {},
-            "root": "apps/mqtt-dashboard",
-            "sourceRoot": "apps/mqtt-dashboard/src",
-            "prefix": "mqtt-dashboard",
-            "architect": {
-                "build": {
-                    "builder": "@angular-devkit/build-angular:browser",
-                    "options": {
-                        "outputPath": "dist/apps/mqtt-dashboard",
-                        "index": "apps/mqtt-dashboard/src/index.html",
-                        "main": "apps/mqtt-dashboard/src/main.ts",
-                        "polyfills": "apps/mqtt-dashboard/src/polyfills.ts",
-                        "tsConfig": "apps/mqtt-dashboard/tsconfig.app.json",
-                        "aot": true,
-                        "assets": ["apps/mqtt-dashboard/src/favicon.ico", "apps/mqtt-dashboard/src/assets"],
-                        "styles": [
-                            "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
-                            "apps/mqtt-dashboard/src/styles.scss"
-                        ],
-                        "scripts": []
-                    },
-                    "configurations": {
-                        "production": {
-                            "fileReplacements": [
-                                {
-                                    "replace": "apps/mqtt-dashboard/src/environments/environment.ts",
-                                    "with": "apps/mqtt-dashboard/src/environments/environment.prod.ts"
-                                }
-                            ],
-                            "optimization": true,
-                            "outputHashing": "all",
-                            "sourceMap": false,
-                            "extractCss": true,
-                            "namedChunks": false,
-                            "extractLicenses": true,
-                            "vendorChunk": false,
-                            "buildOptimizer": true,
-                            "budgets": [
-                                {
-                                    "type": "initial",
-                                    "maximumWarning": "2mb",
-                                    "maximumError": "5mb"
-                                },
-                                {
-                                    "type": "anyComponentStyle",
-                                    "maximumWarning": "6kb",
-                                    "maximumError": "10kb"
-                                }
-                            ]
-                        }
-                    }
-                },
-                "serve": {
-                    "builder": "@angular-devkit/build-angular:dev-server",
-                    "options": {
-                        "browserTarget": "mqtt-dashboard:build",
-                        "proxyConfig": "apps/mqtt-dashboard/proxy.conf.json"
-                    },
-                    "configurations": {
-                        "production": {
-                            "browserTarget": "mqtt-dashboard:build:production"
-                        }
-                    }
-                },
-                "extract-i18n": {
-                    "builder": "@angular-devkit/build-angular:extract-i18n",
-                    "options": {
-                        "browserTarget": "mqtt-dashboard:build"
-                    }
-                },
-                "lint": {
-                    "builder": "@angular-devkit/build-angular:tslint",
-                    "options": {
-                        "tsConfig": [
-                            "apps/mqtt-dashboard/tsconfig.app.json",
-                            "apps/mqtt-dashboard/tsconfig.spec.json",
-                            "apps/mqtt-dashboard/tsconfig.editor.json"
-                        ],
-                        "exclude": ["**/node_modules/**", "!apps/mqtt-dashboard/**/*"]
-                    }
-                },
-                "test": {
-                    "builder": "@nrwl/jest:jest",
-                    "options": {
-                        "jestConfig": "apps/mqtt-dashboard/jest.config.js",
-                        "passWithNoTests": true
-                    }
+  "version": 1,
+  "projects": {
+    "mqtt-dashboard": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "apps/mqtt-dashboard",
+      "sourceRoot": "apps/mqtt-dashboard/src",
+      "prefix": "mqtt-dashboard",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/mqtt-dashboard",
+            "index": "apps/mqtt-dashboard/src/index.html",
+            "main": "apps/mqtt-dashboard/src/main.ts",
+            "polyfills": "apps/mqtt-dashboard/src/polyfills.ts",
+            "tsConfig": "apps/mqtt-dashboard/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/mqtt-dashboard/src/favicon.ico",
+              "apps/mqtt-dashboard/src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "apps/mqtt-dashboard/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/mqtt-dashboard/src/environments/environment.ts",
+                  "with": "apps/mqtt-dashboard/src/environments/environment.prod.ts"
                 }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
             }
+          },
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
-        "api": {
-            "root": "apps/api",
-            "sourceRoot": "apps/api/src",
-            "projectType": "application",
-            "prefix": "api",
-            "schematics": {},
-            "architect": {
-                "build": {
-                    "builder": "@nrwl/node:build",
-                    "options": {
-                        "outputPath": "dist/apps/api",
-                        "main": "apps/api/src/main.ts",
-                        "tsConfig": "apps/api/tsconfig.app.json",
-                        "assets": ["apps/api/src/assets"]
-                    },
-                    "configurations": {
-                        "production": {
-                            "optimization": true,
-                            "extractLicenses": true,
-                            "inspect": false,
-                            "fileReplacements": [
-                                {
-                                    "replace": "apps/api/src/environments/environment.ts",
-                                    "with": "apps/api/src/environments/environment.prod.ts"
-                                }
-                            ]
-                        }
-                    }
-                },
-                "serve": {
-                    "builder": "@nrwl/node:execute",
-                    "options": {
-                        "buildTarget": "api:build"
-                    }
-                },
-                "lint": {
-                    "builder": "@angular-devkit/build-angular:tslint",
-                    "options": {
-                        "tsConfig": ["apps/api/tsconfig.app.json", "apps/api/tsconfig.spec.json"],
-                        "exclude": ["**/node_modules/**", "!apps/api/**/*"]
-                    }
-                },
-                "test": {
-                    "builder": "@nrwl/jest:jest",
-                    "options": {
-                        "jestConfig": "apps/api/jest.config.js",
-                        "passWithNoTests": true
-                    }
-                }
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "mqtt-dashboard:build",
+            "proxyConfig": "apps/mqtt-dashboard/proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "mqtt-dashboard:build:production"
             }
+          }
         },
-        "api-interfaces": {
-            "root": "libs/api-interfaces",
-            "sourceRoot": "libs/api-interfaces/src",
-            "projectType": "library",
-            "schematics": {},
-            "architect": {
-                "lint": {
-                    "builder": "@angular-devkit/build-angular:tslint",
-                    "options": {
-                        "tsConfig": ["libs/api-interfaces/tsconfig.lib.json", "libs/api-interfaces/tsconfig.spec.json"],
-                        "exclude": ["**/node_modules/**", "!libs/api-interfaces/**/*"]
-                    }
-                },
-                "test": {
-                    "builder": "@nrwl/jest:jest",
-                    "options": {
-                        "jestConfig": "libs/api-interfaces/jest.config.js",
-                        "passWithNoTests": true
-                    }
-                }
-            }
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "mqtt-dashboard:build"
+          }
         },
-        "data-converter": {
-            "root": "libs/data-converter",
-            "sourceRoot": "libs/data-converter/src",
-            "projectType": "library",
-            "schematics": {},
-            "architect": {
-                "lint": {
-                    "builder": "@angular-devkit/build-angular:tslint",
-                    "options": {
-                        "tsConfig": ["libs/data-converter/tsconfig.lib.json"],
-                        "exclude": ["**/node_modules/**", "!libs/data-converter/**/*"]
-                    }
-                }
-            }
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/mqtt-dashboard/tsconfig.app.json",
+              "apps/mqtt-dashboard/tsconfig.spec.json",
+              "apps/mqtt-dashboard/tsconfig.editor.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/mqtt-dashboard/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/mqtt-dashboard/jest.config.js",
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/apps/mqtt-dashboard"
+          ]
         }
+      }
     },
-    "cli": {
-        "defaultCollection": "@nrwl/angular"
-    },
-    "schematics": {
-        "@nrwl/workspace": {
-            "library": {
-                "linter": "tslint"
+    "api": {
+      "root": "apps/api",
+      "sourceRoot": "apps/api/src",
+      "projectType": "application",
+      "prefix": "api",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/api",
+            "main": "apps/api/src/main.ts",
+            "tsConfig": "apps/api/tsconfig.app.json",
+            "assets": [
+              "apps/api/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/api/src/environments/environment.ts",
+                  "with": "apps/api/src/environments/environment.prod.ts"
+                }
+              ]
             }
+          },
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
-        "@nrwl/cypress": {
-            "cypress-project": {
-                "linter": "tslint"
-            }
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "api:build"
+          }
         },
-        "@nrwl/node": {
-            "application": {
-                "linter": "tslint"
-            },
-            "library": {
-                "linter": "tslint"
-            }
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/api/tsconfig.app.json",
+              "apps/api/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/api/**/*"
+            ]
+          }
         },
-        "@nrwl/nest": {
-            "application": {
-                "linter": "tslint"
-            },
-            "library": {
-                "linter": "tslint"
-            }
-        },
-        "@nrwl/express": {
-            "application": {
-                "linter": "tslint"
-            },
-            "library": {
-                "linter": "tslint"
-            }
-        },
-        "@nrwl/angular:application": {
-            "unitTestRunner": "jest",
-            "e2eTestRunner": "cypress"
-        },
-        "@nrwl/angular:library": {
-            "unitTestRunner": "jest"
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/api/jest.config.js",
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/apps/api"
+          ]
         }
+      }
     },
-    "defaultProject": "mqtt-dashboard"
+    "api-interfaces": {
+      "root": "libs/api-interfaces",
+      "sourceRoot": "libs/api-interfaces/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/api-interfaces/tsconfig.lib.json",
+              "libs/api-interfaces/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/api-interfaces/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/api-interfaces/jest.config.js",
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/libs/api-interfaces"
+          ]
+        }
+      }
+    },
+    "data-converter": {
+      "root": "libs/data-converter",
+      "sourceRoot": "libs/data-converter/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/data-converter/tsconfig.lib.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/data-converter/**/*"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/workspace": {
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/cypress": {
+      "cypress-project": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/node": {
+      "application": {
+        "linter": "tslint"
+      },
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/nest": {
+      "application": {
+        "linter": "tslint"
+      },
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/express": {
+      "application": {
+        "linter": "tslint"
+      },
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "mqtt-dashboard"
 }

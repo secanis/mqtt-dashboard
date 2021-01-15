@@ -1,13 +1,13 @@
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { EChartOption } from 'echarts';
+import { EChartsOption } from 'echarts';
 import * as moment from 'moment';
 
 import { MqttSys } from '../../../api-interfaces/src/lib/api-interfaces';
 
 import { ChartData } from './models';
 
-export function getLoadPublishChart(mqttSysInfo: Observable<MqttSys[]>): Observable<EChartOption> {
+export function getLoadPublishChart(mqttSysInfo: Observable<MqttSys[]>): Observable<EChartsOption> {
     return mqttSysInfo.pipe(
         map(i =>
             i.reduce(
@@ -35,7 +35,7 @@ export function getLoadPublishChart(mqttSysInfo: Observable<MqttSys[]>): Observa
     );
 }
 
-export function getLoadMessagesChart(mqttSysInfo: Observable<MqttSys[]>): Observable<EChartOption> {
+export function getLoadMessagesChart(mqttSysInfo: Observable<MqttSys[]>): Observable<EChartsOption> {
     return mqttSysInfo.pipe(
         map(i =>
             i.reduce(
@@ -63,7 +63,7 @@ export function getLoadMessagesChart(mqttSysInfo: Observable<MqttSys[]>): Observ
     );
 }
 
-export function getLoadBytesChart(mqttSysInfo: Observable<MqttSys[]>): Observable<EChartOption> {
+export function getLoadBytesChart(mqttSysInfo: Observable<MqttSys[]>): Observable<EChartsOption> {
     return mqttSysInfo.pipe(
         map(i =>
             i.reduce(
@@ -91,7 +91,7 @@ export function getLoadBytesChart(mqttSysInfo: Observable<MqttSys[]>): Observabl
     );
 }
 
-export function getConnectionChart(mqttSysInfo: Observable<MqttSys[]>): Observable<EChartOption> {
+export function getConnectionChart(mqttSysInfo: Observable<MqttSys[]>): Observable<EChartsOption> {
     return mqttSysInfo.pipe(
         map(i =>
             i.reduce(
@@ -115,7 +115,7 @@ export function getConnectionChart(mqttSysInfo: Observable<MqttSys[]>): Observab
     );
 }
 
-function generateChartData(chartDataList: ChartData) {
+function generateChartData(chartDataList: ChartData): EChartsOption {
     return {
         tooltip: {
             trigger: 'axis',

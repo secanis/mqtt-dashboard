@@ -23,16 +23,18 @@ docker run --name mqtt-dashboard -p 3333:3333 secanis/mqtt-dashboard
 
 To configure the Mqtt-Dashboard you can set several ENV variables:
 
-| ENV           | default   | description         |
-| ------------- | --------- | ------------------- |
-| REDIS_HOST    | localhost | Redis host          |
-| REDIS_PORT    | 6379      | Redis port          |
-| MQTT_HOST     | localhost | Mqtt Hostname/Host  |
-| MQTT_PORT     | 9001      | Mqtt Port           |
-| MQTT_USERNAME | -         | Mqtt Username       |
-| MQTT_PASSWORD | -         | Mqtt Password       |
-| MQTT_QOS      | 2         | Mqtt QOS Setting    |
-| MQTT_RETAIN   | false     | Mqtt Retain Setting |
+| ENV                   | default   | description            |
+| --------------------- | --------- | ---------------------- |
+| REDIS_HOST            | localhost | Redis host             |
+| REDIS_PORT            | 6379      | Redis port             |
+| MQTT_HOST             | localhost | Mqtt Hostname/Host     |
+| MQTT_PORT             | 1883      | Mqtt Port              |
+| MQTT_USERNAME         | -         | Mqtt Username          |
+| MQTT_PASSWORD         | -         | Mqtt Password          |
+| MQTT_PROTOCOL         | mqtt      | Mqtt Protocol          |
+| MQTT_PROTOCOL_VERSION | 5         | Mqtt Protocol Version  |
+
+> Protocol can be 'ws' || 'wss' || 'mqtt' || 'mqtts'
 
 Full Example:
 

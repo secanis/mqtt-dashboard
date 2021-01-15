@@ -11,7 +11,7 @@ export class MqttGateway implements OnGatewayConnection, OnGatewayDisconnect {
     constructor(private appService: AppService) {}
 
     async handleConnection(client: Client, ...args: any[]) {
-        Logger.log('connected', client.id);
+        Logger.log(`connected ${client.id}`, 'WebSocket');
 
         merge(this.appService.getConnectedState(), this.appService.getSysData()).subscribe(obj => {
             this.server.emit(obj.event, obj.data);
@@ -19,6 +19,6 @@ export class MqttGateway implements OnGatewayConnection, OnGatewayDisconnect {
     }
 
     async handleDisconnect(client: Client) {
-        Logger.log('disconnected', client.id);
+        Logger.log(`disconnected ${client.id}`, 'WebSocket');
     }
 }

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { filter, map } from 'rxjs/operators';
-import { EChartOption } from 'echarts';
 import { combineLatest, Observable } from 'rxjs';
 import * as moment from 'moment';
 
 import { WebsocketService } from './services/websocket.service';
 import { HttpClient } from '@angular/common/http';
+import { EChartsOption } from 'echarts';
 import {
     getLoadPublishChart,
     getLoadMessagesChart,
@@ -37,10 +37,10 @@ export class AppComponent {
     );
 
     // generate chart data and publish it to observable
-    loadPublishChart$: Observable<EChartOption> = getLoadPublishChart(this.mqttSysInfo$);
-    loadMessagesChart$: Observable<EChartOption> = getLoadMessagesChart(this.mqttSysInfo$);
-    loadBytesChart$: Observable<EChartOption> = getLoadBytesChart(this.mqttSysInfo$);
-    connectionsChart$: Observable<EChartOption> = getConnectionChart(this.mqttSysInfo$);
+    loadPublishChart$: Observable<EChartsOption> = getLoadPublishChart(this.mqttSysInfo$);
+    loadMessagesChart$: Observable<EChartsOption> = getLoadMessagesChart(this.mqttSysInfo$);
+    loadBytesChart$: Observable<EChartsOption> = getLoadBytesChart(this.mqttSysInfo$);
+    connectionsChart$: Observable<EChartsOption> = getConnectionChart(this.mqttSysInfo$);
 
     constructor(private readonly http: HttpClient, private readonly websocketService: WebsocketService) {}
 }
