@@ -6,23 +6,23 @@ interface MqttDashboardConfig {
     redis: {
         host: string;
         port: number;
-    },
+    };
     mqtt: IClientOptions;
 }
 
 let config: MqttDashboardConfig = {
     redis: {
         host: process.env.REDIS_HOST || 'localhost',
-        port: parseInt(process.env.REDIS_PORT, 10) || 6379,
+        port: process.env.REDIS_PORT ? parseInt(process.env.REDIS_PORT, 10) : 6379,
     },
     mqtt: {
         host: process.env.MQTT_HOST || 'localhost',
         hostname: process.env.MQTT_HOST || 'localhost',
-        port: parseInt(process.env.MQTT_PORT, 10) || 1883,
+        port: process.env.MQTT_PORT ? parseInt(process.env.MQTT_PORT, 10) : 1883,
         username: process.env.MQTT_USERNAME,
         password: process.env.MQTT_PASSWORD,
-        protocol: (process.env.PROTOCOL === ('ws' || 'wss' || 'mqtt' || 'mqtts')) ? process.env.PROTOCOL : 'mqtt',
-        protocolVersion: parseInt(process.env.MQTT_PROTOCOL_VERSION, 10) || 5,
+        protocol: process.env.PROTOCOL === ('ws' || 'wss' || 'mqtt' || 'mqtts') ? process.env.PROTOCOL : 'mqtt',
+        protocolVersion: process.env.MQTT_PROTOCOL_VERSION ? parseInt(process.env.MQTT_PROTOCOL_VERSION, 10) : 5,
     },
 };
 
@@ -52,7 +52,6 @@ export default () => ({
     },
     mqtt: {
         ...config.mqtt,
-        port: parseInt(config.mqtt.port.toString(), 10),
-        protocol: 'ws',
+        reconnectPeriod: 5000,
     },
 });

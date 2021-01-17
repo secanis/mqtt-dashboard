@@ -30,7 +30,7 @@ export class AppService {
 
         this.client.on('connect', obj => {
             this.mqtt_connected.next(true);
-            Logger.log(obj.cmd, 'MQTT');
+            Logger.log(`${obj.cmd} ✔`, 'MQTT');
         });
         this.client.subscribe(['$SYS/#']);
 
