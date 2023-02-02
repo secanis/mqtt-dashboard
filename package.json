@@ -61,7 +61,7 @@
         "zone.js": "^0.11.3"
     },
     "devDependencies": {
-        "@angular-devkit/build-angular": "14.2.7",
+        "@angular-devkit/build-angular": "14.2.10",
         "@angular/cli": "11.2.19",
         "@angular/compiler-cli": "11.0.9",
         "@angular/language-service": "11.0.9",
@@ -70,7 +70,7 @@
         "@nrwl/cli": "11.1.5",
         "@nrwl/cypress": "11.1.5",
         "@nrwl/jest": "11.1.5",
-        "@nrwl/nest": "15.0.4",
+        "@nrwl/nest": "15.6.3",
         "@nrwl/node": "15.0.4",
         "@nrwl/tao": "11.1.5",
         "@nrwl/workspace": "11.1.5",
